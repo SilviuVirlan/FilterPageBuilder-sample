@@ -1,10 +1,5 @@
 pageextension 50111 "SVItems by Location Matrix" extends "Items by Location Matrix"
 {
-    layout
-    {
-        // Add changes to page layout here
-    }
-
     actions
     {
         addafter("&Item Availability by")
@@ -23,9 +18,7 @@ pageextension 50111 "SVItems by Location Matrix" extends "Items by Location Matr
                     Quantity: Record Integer;
                     LocationCode: Code[20];
                     Qty: Integer;
-                    ErrInfo: ErrorInfo;
                 begin
-                    ErrInfo.Collectible := true;
                     title := 'Choose Location';
                     location.Reset();
                     FilterLocationPageBuilder.AddRecord(title, location);
@@ -56,15 +49,4 @@ pageextension 50111 "SVItems by Location Matrix" extends "Items by Location Matr
             }
         }
     }
-    [ErrorBehavior(ErrorBehavior::Collect)]
-    local procedure MyCollectibleErrorProc()
-    var
-        E: ErrorInfo;
-    begin
-        Error(ErrorInfo.Create('Error 1', true));
-        Error(ErrorInfo.Create('Error 2', true));
-    end;
-
-    var
-        myInt: Integer;
 }
